@@ -31,6 +31,27 @@ This idea originally came from [breach-mitigation-rails](https://github.com/meld
 
 As said in breach-migration-rails, BREACH is complicated and wide-ranging attack and this module provides only PARTIAL protection. To secure your website or service wholly, you need to review BREACH paper and find proper way according to your own website or service.
 
+## Pre-built Packages (Ubuntu / Debian)
+
+Pre-built packages for this module are freely available from the GetPageSpeed repository:
+
+```bash
+# Install the repository keyring
+sudo install -d -m 0755 /etc/apt/keyrings
+curl -fsSL https://extras.getpagespeed.com/deb-archive-keyring.gpg \
+  | sudo tee /etc/apt/keyrings/getpagespeed.gpg >/dev/null
+
+# Add the repository (Ubuntu example - replace 'ubuntu' and 'jammy' for your distro)
+echo "deb [signed-by=/etc/apt/keyrings/getpagespeed.gpg] https://extras.getpagespeed.com/ubuntu jammy main" \
+  | sudo tee /etc/apt/sources.list.d/getpagespeed-extras.list
+
+# Install nginx and the module
+sudo apt-get update
+sudo apt-get install nginx nginx-module-length-hiding
+```
+
+The module is automatically enabled after installation. Supported distributions include Debian 12/13 and Ubuntu 20.04/22.04/24.04 (both amd64 and arm64). See [the complete setup instructions](https://apt-nginx-extras.getpagespeed.com/apt-setup/).
+
 ## Installation
 
 Module version | Nginx version
@@ -79,7 +100,7 @@ Sets maximum length of random generated string used in HTML comment. The size sh
 * default: text/html
 * context: http, server, location, if in location
 
-Enables adding random generated HTML comment to responses of the specified MIME types in addition to text/html. The special value * matches any MIME type. 
+Enables adding random generated HTML comment to responses of the specified MIME types in addition to text/html. The special value * matches any MIME type.
 
 ## Example Configuration
 
